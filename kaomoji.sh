@@ -18,6 +18,16 @@ case "$1" in
     	;;
 esac
 
+if ! test -x "$(command -v skate)"; then
+	echo "missing required dependency: skate"
+	exit 1
+fi
+
+if ! test -x "$(command -v gum)"; then
+	echo "missing required dependency: gum"
+	exit 1
+fi
+
 # check for existing DB
 check="$(skate list @kaomoji)"
 
@@ -36,6 +46,10 @@ choice="$(echo $kaomoji)"
 if [[ $choice == "" ]]; then
 	exit 1
 fi
+
+notif() {
+	notify-send "$kaomoji copied to clipboard!"
+}
 
 # If xsel (X11) or pbcopy (macOS) exists, copy to the clipboard. If not, just
 # print the Kaomoji.
