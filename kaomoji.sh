@@ -54,14 +54,14 @@ notif() {
 # If xsel (X11) or pbcopy (macOS) exists, copy to the clipboard. If not, just
 # print the Kaomoji.
 if command -v xsel &> /dev/null; then
-	printf '%s' "$choice" | xclip -sel clip # X11
+	printf '%s' "$choice" | xclip -sel clip | notif # X11
 elif command -v pbcopy &> /dev/null; then
-	printf '%s' "$choice" | pbcopy # macOS
+	printf '%s' "$choice" | pbcopy | notif # macOS
 else
 	# We can't copy, so just print it out.
-	printf 'Here you go: %s\n' "$choice" | lolcat -p 0.5
+	printf 'Here you go: %s\n' "$choice" | lolcat -p 0.5 | notif
 	exit 0
 fi
 
 # We're done!
-printf 'Copied %s to the clipboard\n' "$choice" | lolcat -p 0.5
+printf 'Copied %s to the clipboard\n' "$choice" | lolcat -p 0.5 | notif
