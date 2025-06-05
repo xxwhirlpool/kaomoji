@@ -27,7 +27,7 @@ if [[ $check == "" ]]; then
 fi
 
 # print list to select or search for a kaomoji by name
-kaomoji="$(skate list @kaomoji | gum filter)"
+kaomoji="$(skate list @kaomoji | gum filter | sed -e 's/^\w*\ *//')"
 if [[ $kaomoji == "" ]]; then
 	exit 1
 fi
