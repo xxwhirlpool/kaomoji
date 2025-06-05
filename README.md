@@ -1,5 +1,7 @@
 # kaomoji
 
+![Made with VHS](https://vhs.charm.sh/vhs-47WNln74rXk95JAyJ2hSwY.gif)
+
 select from a tiny database of cute little kaomojis, powered by [skate](https://github.com/charmbracelet/skate) and [gum](https://github.com/charmbracelet/gum)!
 
 this project was inspired by me wanting to take the AI out of [this charm CLI recipe](https://charm.sh/blog/kamoji-generator/) and instead use their `skate` key-value store.
