@@ -33,12 +33,12 @@ default() {
 	
 	# print list to select or search for a kaomoji by name
 	kaomoji="$(skate list @kaomoji | gum filter | sed -e 's/^\w*\ *//')"
-	if [[ $kaomoji == "" ]]; then
+	if [[ "$kaomoji" == "" ]]; then
 		exit 1
 	fi
 
 	choice=$(echo "$kaomoji")
-	if [[ $choice == "" ]]; then
+	if [[ "$choice" == "" ]]; then
 		exit 1
 	fi
 
@@ -60,6 +60,11 @@ default() {
 
 menu() {
 	pick=$(skate list "@kaomoji" | dmenu -i -c -l 10)
+
+	if [[ "$pick" == "" ]]; then
+		exit 0
+	fi
+	
 	printf "$pick" | sed -e 's/^\w*\ *//' | tr -d '[:blank:]' | xclip -sel clip | notif
 }
 
